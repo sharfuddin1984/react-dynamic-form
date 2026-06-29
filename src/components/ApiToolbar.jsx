@@ -6,7 +6,7 @@ export default function ApiToolbar({ endpointKeys, endpointKey, onSelect, onFetc
     <div className="dff-toolbar">
       <Code2 size={16} color="var(--amber)" />
       <span className="dff-toolbar-label">GET /api/forms/</span>
-      <select className="dff-select-sm" value={endpointKey} onChange={(e) => onSelect(e.target.value)}>
+      <select id="endpoint-select" name="endpoint" className="dff-select-sm" value={endpointKey} onChange={(e) => onSelect(e.target.value)}>
         {endpointKeys.map((key) => (
           <option key={key} value={key}>{key}</option>
         ))}
