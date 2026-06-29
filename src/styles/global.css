@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---------------------------------------------------------------------------
+   Design tokens. This is the single source of truth for color — components
+   reference these variables directly (in CSS, or via color="var(--x)" on
+   lucide icons) instead of importing a JS color object.
+--------------------------------------------------------------------------- */
+:root {
+  --bg: #0B0F14;
+  --bg-panel: #11161D;
+  --border: #1C232C;
+  --border-light: #262E38;
+  --text: #E6EDF3;
+  --text-dim: #8B98A5;
+  --amber: #F5A623;
+  --teal: #4FD1C5;
+  --red: #F87171;
+  --green: #34D399;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+/* Layout shell */
+.dff-app { min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; }
+.dff-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-bottom: 1px solid var(--border); }
+.dff-title { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; margin: 0; }
+.dff-subtitle { color: var(--text-dim); font-size: 12.5px; margin: 2px 0 0; }
+
+.dff-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 24px; border-bottom: 1px solid var(--border); background: var(--bg-panel); }
+.dff-toolbar-label { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-dim); }
+.dff-status-ok { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--green); }
+
+.dff-layout { display: flex; flex-direction: column; min-height: calc(100vh - 122px); }
+@media (min-width: 768px) { .dff-layout { flex-direction: row; } }
+
+.dff-pane { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.dff-pane-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; border-bottom: 1px solid var(--border); }
+.dff-pane-title-amber { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; color: var(--amber); }
+.dff-pane-title-teal { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; color: var(--teal); }
+.dff-pane-meta { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); }
+
+/* Divider — vertical on desktop, horizontal on mobile (see media query) */
+.dff-divider-v { display: none; }
+.dff-divider-h { display: flex; align-items: center; justify-content: center; height: 22px; gap: 2px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-panel); }
+@media (min-width: 768px) {
+  .dff-divider-v { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 26px; gap: 2px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); background: var(--bg-panel); }
+  .dff-divider-h { display: none; }
+}
+
+/* Schema editor pane */
+.dff-editor { flex: 1; width: 100%; background: var(--bg); color: var(--text); border: none; outline: none; resize: none; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; padding: 16px 20px; }
+.dff-editor-status { padding: 10px 20px; border-top: 1px solid var(--border); min-height: 32px; }
+.dff-status-row { display: flex; align-items: center; gap: 6px; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+.dff-status-error { color: var(--red); }
+.dff-status-valid { color: var(--green); }
+
+/* Form preview pane */
+.dff-form-body { flex: 1; overflow: auto; padding: 20px 24px; }
+.dff-form-title { font-family: 'Space Grotesk', sans-serif; font-size: 19px; margin: 0 0 4px; }
+.dff-form-desc { color: var(--text-dim); font-size: 13px; margin: 0 0 20px; }
+.dff-empty-state { color: var(--text-dim); }
+
+/* Fields */
+.dff-field { margin-bottom: 18px; }
+.dff-label { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.dff-required { color: var(--amber); }
+.dff-error { font-size: 12px; color: var(--red); margin-top: 4px; }
+.dff-option-group { display: flex; flex-direction: column; gap: 8px; }
+.dff-option { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text); cursor: pointer; }
+input[type='radio'], input[type='checkbox'] { accent-color: var(--teal); }
+
+.dff-input { width: 100%; background: var(--bg); border: 1px solid var(--border-light); border-radius: 8px; padding: 10px 12px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color .15s ease, box-shadow .15s ease; }
+textarea.dff-input { resize: vertical; min-height: 90px; line-height: 1.5; }
+.dff-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.15); }
+.dff-input-error, .dff-input-error:focus { border-color: var(--red) !important; box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15) !important; }
+
+.dff-select-sm { background: var(--bg-panel); border: 1px solid var(--border-light); border-radius: 6px; padding: 5px 8px; color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 12px; outline: none; }
+
+/* Buttons */
+.dff-actions { display: flex; gap: 12px; margin-top: 8px; }
+.dff-btn-primary { display: inline-flex; align-items: center; gap: 6px; background: var(--teal); color: #06201D; border: none; border-radius: 8px; padding: 10px 18px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; transition: filter .15s ease; }
+.dff-btn-primary:hover { filter: brightness(1.08); }
+.dff-btn-ghost { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--text-dim); border: 1px solid var(--border-light); border-radius: 8px; padding: 10px 16px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px; cursor: pointer; transition: border-color .15s ease, color .15s ease; }
+.dff-btn-ghost:hover { border-color: var(--teal); color: var(--text); }
+.dff-btn-ghost:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Submission result */
+.dff-success-header { display: flex; align-items: center; gap: 8px; color: var(--green); margin-bottom: 12px; }
+.dff-success-title { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; }
+.dff-success-sub { color: var(--text-dim); font-size: 13px; margin-bottom: 16px; }
+.dff-payload { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow: auto; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--teal); max-height: 280px; }
+
+/* Live badge */
+.dff-live-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+.dff-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); display: inline-block; }
+
+/* Scrollbars */
+.dff-editor::-webkit-scrollbar, .dff-payload::-webkit-scrollbar { width: 8px; height: 8px; }
+.dff-editor::-webkit-scrollbar-thumb, .dff-payload::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+
+/* Motion — respects prefers-reduced-motion */
+@media (prefers-reduced-motion: no-preference) {
+  .dff-dot { animation: dff-pulse 1.8s ease-in-out infinite; }
+  .dff-spin { animation: dff-spin 0.8s linear infinite; }
+  .dff-flow-1 { animation: dff-flow 1.6s ease-in-out infinite; }
+  .dff-flow-2 { animation: dff-flow 1.6s ease-in-out infinite; animation-delay: .18s; }
+  .dff-flow-3 { animation: dff-flow 1.6s ease-in-out infinite; animation-delay: .36s; }
+}
+@keyframes dff-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@keyframes dff-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes dff-flow { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
