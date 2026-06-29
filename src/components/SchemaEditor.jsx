@@ -23,6 +23,8 @@ export default function SchemaEditor({ jsonText, onChange, parseError }) {
       </div>
 
       <textarea
+        id="schema-json"
+        name="schema-json"
         className="dff-editor"
         value={jsonText}
         onChange={(e) => onChange(e.target.value)}
