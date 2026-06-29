@@ -63,6 +63,8 @@ body { margin: 0; }
 
 /* Fields */
 .dff-field { margin-bottom: 18px; }
+fieldset.dff-field { border: 0; padding: 0; }
+legend.dff-label { padding: 0; width: auto; }
 .dff-label { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
 .dff-required { color: var(--amber); }
 .dff-error { font-size: 12px; color: var(--red); margin-top: 4px; }
